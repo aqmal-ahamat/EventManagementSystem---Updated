@@ -44,10 +44,24 @@ namespace EventManagementSystem
 
             
             bool emptyFields = InputValidator.Validate(name, venue);
-
-            if (!emptyFields)
+            if (InputValidator.CheckString(name))
             {
-                classes.eventManager.createEvent(name, venue, time, date, maxparticipant, Organizer,price);
+                if (InputValidator.CheckString(venue))
+                {
+
+                    if (!emptyFields)
+                    {
+                        classes.eventManager.createEvent(name, venue, time, date, maxparticipant, Organizer, price);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Event venue cannot be only Numbers");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Event name cannot be only Numbers");
             }
 
         }

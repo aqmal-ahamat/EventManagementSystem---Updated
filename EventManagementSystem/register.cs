@@ -36,10 +36,26 @@ namespace EventManagementSystem
             
 
             bool emptyFields = InputValidator.Validate(username, password, confpassword, email, mNumber, role);
-
-            if (!emptyFields)
+            if (InputValidator.CheckString(username))
             {
-                classes.personManager.registerUser(username, password, confpassword, email, mNumber, role);
+                if (!InputValidator.CheckString(mNumber))
+                {
+
+
+                    if (!emptyFields)
+                    {
+                        classes.personManager.registerUser(username, password, confpassword, email, mNumber, role);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Mobile number should contain only numbers");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Username cannot be only numbers");
             }
 
 
