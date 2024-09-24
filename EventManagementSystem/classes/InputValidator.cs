@@ -8,12 +8,13 @@ using System.Windows.Forms;
 namespace EventManagementSystem
 {
     internal static class InputValidator
-    {//Purpose : Check for any empty fields
-     //return true if there are empty fields. return false if there are no empty fields
+    {
 
 
-        public static bool Validate(params string[]fields) 
-        {//take a variable amount of arguements(the text of each input field) as save it in parameter array 'fields'
+        public static bool Validate(params string[]fields)
+        {//Purpose : Check for any empty fields
+         //return true if there are empty fields. return false if there are no empty fields
+         //take a variable amount of arguements(the text of each input field) as save it in parameter array 'fields'
             bool emptyFields = false;
 
             // check if atleast one input text is empty
@@ -34,5 +35,23 @@ namespace EventManagementSystem
             return emptyFields;
 
         }
+
+
+
+        public static bool CheckString(string input)
+        {
+            bool containsString = false;
+
+            foreach(char character in input)
+            {
+                if (char.IsLetter(character))
+                {
+                    containsString = true;
+                }
+            }
+            return containsString;
+        }
+    
     }
+
 }
