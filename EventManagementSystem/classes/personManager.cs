@@ -121,7 +121,7 @@ namespace EventManagementSystem.classes
         {//Purpose :  Add new users to the Database.
 
             //validate user inputs
-            if (validateRegisterInput(password, confpassword, username))
+            if (InputValidator.validateRegisterInput(password, confpassword, username))
             {//inputs are valid
 
                 DbConnections dbConnection = new DbConnections();
@@ -156,82 +156,7 @@ namespace EventManagementSystem.classes
         }
 
 
-        private static bool validateRegisterInput(string password, string confpassword, string username)
-        {//Purpose :  Validate inputs when a new user is registering
-        // return true if the inputs are valid. return false if the inputs are not valid.
-
-            //temporary variable to store if the username already exists in the database
-            bool usernameValid = false;
-
-            DbConnections dbConnections5 = new DbConnections();
-            string query5 = $"SELECT * FROM `person` where username='{username}'";
-            MySqlCommand cmd5 = new MySqlCommand(query5, dbConnections5.GetConnection());
-
-            try
-            {
-                dbConnections5.OpenConnection();
-                MySqlDataReader reader5 = cmd5.ExecuteReader();
-
-                //check if theres any records for the entered username
-                if (!reader5.HasRows)
-                {
-                    //username doesnt exist
-                    //username is valid
-
-                    usernameValid = true;
-
-
-
-
-                }
-
-                reader5.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-
-            }
-            finally
-            {
-                dbConnections5.CloseConnection();
-            }
-
-
-
-
-            if (usernameValid)
-            {
-                // username is valid
-
-                // check if the password and confirm password fields match
-                if (password == confpassword)
-                {// fields do match
-
-                   
-                    return true;
-
-                    
-
-                }
-                else
-                {//fields doesnt match
-
-                    MessageBox.Show("Passwords do not match");
-                    return false;
-                }
-            }
-            else
-            {//username is not valid
-                MessageBox.Show("Username already exists..\nPlease Login..");
-                return false;
-            }
-
-
-
-        }
+       
 
 
         public static List<person> getAllUsersList()

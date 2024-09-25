@@ -90,7 +90,7 @@ namespace EventManagementSystem.classes
         {//Purpose :  Add an event to the 'event' table in the DB 
 
             //validate the event name user entered
-            if (validateEventName(name))
+            if (InputValidator.validateEventName(name))
             {
                 // event name is valid
 
@@ -272,55 +272,7 @@ namespace EventManagementSystem.classes
             return allEventsNames;  
         }
 
-        private static bool validateEventName(string name)
-        {//Purpose :  check if event the event name is valid when creating a new event
-        //return true if the event name is valid and return false if the event name is not valid
-
-            bool nameValid = false;
-
-            DbConnections dbConnections5 = new DbConnections();
-            // get all the records in the DB with the event name user entered
-            string query5 = $"SELECT * FROM `event` where name='{name}'";
-            MySqlCommand cmd5 = new MySqlCommand(query5, dbConnections5.GetConnection());
-
-            try
-            {
-                dbConnections5.OpenConnection();
-                MySqlDataReader reader5 = cmd5.ExecuteReader();
-
-                //check if there are any records
-                if (!reader5.HasRows)
-                {//doesnt have any records with the event name
-                 // event name valid
-
-                    nameValid = true;
-
-
-
-
-                }
-                else
-                {//there are records with the event name
-                 // event name is not valid
-                    MessageBox.Show("Event name already Exists..");
-                }
-
-                reader5.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-
-            }
-            finally
-            {
-                dbConnections5.CloseConnection();
-            }
-            return nameValid;
-
-        }
+        
 
         public static void updateCurrentParticipants(Event ev)
         {//Puspose : Update the column 'current participants' in the 'event' table

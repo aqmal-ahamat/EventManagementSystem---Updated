@@ -23,7 +23,7 @@ namespace EventManagementSystem.classes
             string participantName = participant.getUsername();
 
             //validate the booking (check if the booking is already there in the database)
-            if (checkBookingDoesNotExist(participantName, eventName))
+            if (InputValidator.checkBookingDoesNotExist(participantName, eventName))
             {// booking is not there.
 
                 //check if the event is overbooked 
@@ -83,7 +83,7 @@ namespace EventManagementSystem.classes
             string participantName = participant.getUsername();
 
             //validate the booking (check if the booking is not already there in the database)
-            if (checkBookingExist(participantName, eventName))
+            if (InputValidator.checkBookingExist(participantName, eventName))
             {//booking is there in the database
 
 
@@ -123,112 +123,7 @@ namespace EventManagementSystem.classes
 
 
 
-        private static bool checkBookingDoesNotExist(string participant , string ev)
-        {//Purpose :  check if the booking does not exists in the database
-         //returns true if the booking doesnt exist in the database
-         //returns false if the booking is there in the database
-
-            bool nameValid = false;
-
-            DbConnections dbConnections5 = new DbConnections();
-
-            //get booking records for the booking
-            string query5 = $"SELECT * FROM `booking` where participant='{participant}' and event='{ev}'";
-            MySqlCommand cmd5 = new MySqlCommand(query5, dbConnections5.GetConnection());
-
-            try
-            {
-                dbConnections5.OpenConnection();
-                MySqlDataReader reader5 = cmd5.ExecuteReader();
-
-                //check if theres any records
-                if (!reader5.HasRows)
-                {//theres no records 
-
-                    //booking is valid
-
-                    nameValid = true;
-
-
-
-
-                }
-                else
-                {//there are records
-                 // booking is not valid
-                    MessageBox.Show("Booking  already Exists..");
-                }
-
-                reader5.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-
-            }
-            finally
-            {
-                dbConnections5.CloseConnection();
-            }
-            return nameValid;
-
-        }
-
-        private static bool checkBookingExist(string participant, string ev)
-        {//Purpose :  check if the booking exists in the database
-         //returns true if the booking  exist in the database
-         //returns false if the booking  is not there in the database
-            bool hasRows = false;
-
-            //get booking records for the booking
-            DbConnections dbConnections5 = new DbConnections();
-            string query5 = $"SELECT * FROM `booking` where participant='{participant}' and event='{ev}'";
-            MySqlCommand cmd5 = new MySqlCommand(query5, dbConnections5.GetConnection());
-
-            try
-            {
-                dbConnections5.OpenConnection();
-                MySqlDataReader reader5 = cmd5.ExecuteReader();
-
-                //check if theres any records
-                if (reader5.HasRows)
-                {//there are records
-                   
-
-                    hasRows = true;
-
-
-
-
-                }
-                else
-                {
-                    // there are no records
-                    
-                    MessageBox.Show("Cannot delete a booking which does not exists.");
-                    
-                    
-                }
-
-                reader5.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-
-            }
-            finally
-            {
-                dbConnections5.CloseConnection();
-            }
-            return hasRows;
-
-        }
-
+        
         public static List<Event> getAllMyEventsList(person user)
         {// Purpose : return a list of all the events a 'users' has registerd/Booked.
 

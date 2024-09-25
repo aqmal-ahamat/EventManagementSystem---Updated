@@ -40,11 +40,17 @@ namespace EventManagementSystem
             {
                 if (!InputValidator.CheckString(mNumber))
                 {
-
-
-                    if (!emptyFields)
+                    if (mNumber.Length == 10)
                     {
-                        classes.personManager.registerUser(username, password, confpassword, email, mNumber, role);
+
+                        if (!emptyFields)
+                        {
+                            classes.personManager.registerUser(username, password, confpassword, email, mNumber, role);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mobile number should have only 10 characters");
                     }
 
                 }
