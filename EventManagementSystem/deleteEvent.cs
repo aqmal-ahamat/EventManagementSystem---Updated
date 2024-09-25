@@ -54,6 +54,7 @@ namespace EventManagementSystem
                         classes.Event selectedEvent = events[eventNames.IndexOf(alleventsinput.Text)];
 
                         classes.eventManager.deleteEvent(selectedEvent);
+
                     }
 
                 }
