@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagementSystem.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +14,15 @@ namespace EventManagementSystem
     public partial class editEvents : Form
     {
         List<classes.Event> events = classes.eventManager.getAllEventsList();
-        List<string> eventNames = classes.eventManager.getAllEventNamesList();
+        List<string> eventNames = new List<string>();
         public editEvents()
         {
             InitializeComponent();
 
-            foreach (string eventName in eventNames)
+            foreach (Event eventName in events)
             {
-                alleventsinput.Items.Add(eventName);
+                alleventsinput.Items.Add(eventName.getName());
+                eventNames.Add(eventName.getName());
 
             }
         }

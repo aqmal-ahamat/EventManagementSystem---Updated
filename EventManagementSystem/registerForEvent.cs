@@ -1,4 +1,5 @@
 ﻿using EventManagementSystem;
+using EventManagementSystem.classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,16 @@ namespace EventManagementSystem
     public partial class registerForEvent : Form
     {
         List<classes.Event> events = classes.eventManager.getAllEventsList();
-        List<string> eventNames = classes.eventManager.getAllEventNamesList();
+        List<string> eventNames = new List<string>();
         classes.person participant;
         public registerForEvent(classes.person participant)
         {
             this.participant = participant; 
             InitializeComponent();
-            foreach (string eventName in eventNames)
+            foreach (Event eventName in events)
             {
-                alleventsinput.Items.Add(eventName);
+                alleventsinput.Items.Add(eventName.getName());
+                eventNames.Add(eventName.getName());
 
             }
         }

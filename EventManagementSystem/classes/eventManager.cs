@@ -253,24 +253,7 @@ namespace EventManagementSystem.classes
 
         }
 
-        public static List<string> getAllEventNamesList()
-        {// Purpose : return a list of All the event names in the DB
-
-            // get a list of all the events in the DB(item type of Event)
-            List<Event> allEvents = eventManager.getAllEventsList();
-
-            // a List to store only the event Names(item type of string)
-            List<string> allEventsNames = new List<string>();
-
-            //iterate through each item in the allEvents list
-            foreach (Event e in allEvents)
-            {
-                // get the event name for that event and add it to the allEventNames list 
-                allEventsNames.Add(e.getName());
-            }
-            //return the list (has the names of all events)
-            return allEventsNames;  
-        }
+        
 
         
 

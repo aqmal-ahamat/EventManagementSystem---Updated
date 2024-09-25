@@ -43,7 +43,7 @@
             this.label1.Font = new System.Drawing.Font("Cambria", 22.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(288, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 46);
+            this.label1.Size = new System.Drawing.Size(117, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             // 
@@ -93,6 +93,7 @@
             this.passwordText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordText.Location = new System.Drawing.Point(328, 204);
             this.passwordText.Name = "passwordText";
+            this.passwordText.PasswordChar = '*';
             this.passwordText.Size = new System.Drawing.Size(162, 26);
             this.passwordText.TabIndex = 5;
             // 
